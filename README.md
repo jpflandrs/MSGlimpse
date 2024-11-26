@@ -15,7 +15,7 @@ This is the ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/al
 julia ```MSAluxor(inputfile,outputfile,alphabet_size)``` take care that the ```.png``` suffix is automatically added.
 Using the minitest.fasta file 
 ```julia MSALuxor.jl -i minitest.fasta -o minitest -d 10```
-the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/main/mintest.png)
+the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/main/minitest.png)
 Note that in  [PkXplore](https://github.com/jpflandrs/PkXplore) a Vector of sequences is send directly to the function ```panoramatographe_nuc``` like here:
 
         exemple=["ATTCTGGTTGATCCTGCCAGAGGTTACTGCTATC","GATCCTGCCAGAGGTTACTGCTATCGGTGTTCGA",
