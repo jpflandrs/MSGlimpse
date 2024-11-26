@@ -65,10 +65,10 @@ function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int)
             setcolor(couleursvector[n])
             box(pt, cotécarré, cotécarré, :fill)
             setcolor("black")
-            # if cotécarré >=10
-            #     fontsize(cotécarré/2)
-            #     text(string(bases[n]), t[n], halign=:center, valign=:middle)
-            # end
+            if cotécarré >=10
+                fontsize(cotécarré/2)
+                text(string(bases[n]), t[n], halign=:center, valign=:middle)
+            end
         end
     end length(B[1])*cotécarré length(A)*cotécarré sortie #la taille de l'alignement
     return sortie
