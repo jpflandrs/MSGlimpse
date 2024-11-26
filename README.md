@@ -36,7 +36,7 @@ the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/m
 
 - The length of the sequences is not limited and the pictures are not very informative if the sequences (or one of the sequences) is very long! Do not try with a 150,000 bp alignment!. In PkXplore The maximal length is 3500 bp by construction (web-page rendering). It works for bigger sequences but even using ```alphabet_size=1``` the picture may be difficult to read!
 
-- The letters [A,T,G,C,N] are readable only when ```alphabet_size``` is set to 20, under this value the output is fuzzy. Usually the ``alphabet_size``` value is set to 4 and the output is only composed of colored squares.
+- The letters [A,T,G,C,N] are readable only when ```alphabet_size``` is set to 20, under this value the output is fuzzy. Usually the ```alphabet_size``` value is set to 4 and the output is only composed of colored squares.
 
 - Memory ans speed: as long as the number of sequences is low (perhaps 200) and the length of the alignment is under 5000 bp, the speed remains acceptable and the memory usage is low. The PkXplore conditions are: less than 75 sequences and less than 3500bp, in this case the result is immediate. An exemple is given with 911 aligned sequences of length 4283 (```alphabet_size=1```, 42 seconds running, 2.8Go memory used): ![maxitest picture](https://github.com/jpflandrs/MSGlimpse/blob/main/maxitest.png) Using this tool remains possible in limited cases with such a relatively big multiple fasta but is not encouraged :).
 
