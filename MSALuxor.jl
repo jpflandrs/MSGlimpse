@@ -34,29 +34,28 @@ function parse_commandline()
         arg_type = String
         required = true
     "--output", "-o"
-        help = "figure sortie svg"
+        help = "figure sortie"
         arg_type = String
         default = "msa_fig.svg"
     "--dimentions", "-d"
         help = "cotés du carré d'une base"
         arg_type = Int
         default = 5
-    "--typegraphe", "-t"
-        help = "svg ou pdf ou png"
-        arg_type = String
-        default = "png"
     end
     return parse_args(s)
     
 end
 
-function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int,type::String)
-    # a partir de S on fabrique une liste de colorisation et une liste de nom de bases
+
+function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int) #là on peut envoyer une matrice fasta donc on peut traiter les blasts de sortie
+    # a partir de A on fabrique une liste de colorisation et une liste de nom de bases
+    lmax=sort(map(x -> length(x),A),rev=true)[1]
+        A=map(x-> x*"-"^(lmax-length(x)),A)
     B::Vector{Vector{SubString{String}}}= [split(i,"") for i in A] 
-    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "white") for i in j],B)
+    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "black") for i in j],B)
     couleursvector::Vector{String}= [(colorisé...)...] #la liste de 1 ... n
     bases::Vector{Char}=[(A...)...] # les noms des bases de 1 ... n
-    
+    type::String = "png"
     sortie=sortie*"."*type
     #println(length(B[1])*cotécarré,"  " ,length(A)*cotécarré)
     @png begin #defaut  pour le néobibi avec un carré de 15 ou 20 pour lettres sinon 5
@@ -66,38 +65,14 @@ function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int,
             setcolor(couleursvector[n])
             box(pt, cotécarré, cotécarré, :fill)
             setcolor("black")
-            if cotécarré >=10
-                fontsize(cotécarré/2)
-                text(string(bases[n]), t[n], halign=:center, valign=:middle)
-            end
+            # if cotécarré >=10
+            #     fontsize(cotécarré/2)
+            #     text(string(bases[n]), t[n], halign=:center, valign=:middle)
+            # end
         end
     end length(B[1])*cotécarré length(A)*cotécarré sortie #la taille de l'alignement
+    return sortie
 end
-
-function panoramatographe_2_nuc(A::Vector{String},sortie::String,cotécarré::Int,type::String)
-    # a partir de S on fabrique une liste de colorisation et une liste de nom de bases
-    B::Vector{Vector{SubString{String}}}= [split(i,"") for i in A] 
-    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "white") for i in j],B)
-    couleursvector::Vector{String}= [(colorisé...)...] #la liste de 1 ... n
-    bases::Vector{Char}=[(A...)...] # les noms des bases de 1 ... n
-    sortie=sortie*"."*type
-    println(length(B[1])*cotécarré,"  " ,length(A)*cotécarré,)
-    Drawing(length(B[1])*cotécarré, length(A)*cotécarré, sortie) #sorties h sorties v
-    #@png begin #defaut  pour le néobibi avec un carré de 15 ou 20 pour lettres sinon 5
-    background("black")
-    t::Table = Table(length(B), length(B[1]), cotécarré, cotécarré) # rows, columns, wide, high
-    for (pt, n) in t
-        setcolor(couleursvector[n])
-        box(pt, cotécarré, cotécarré, :fill)
-        setcolor("black")
-        if cotécarré >=10
-            text(string(bases[n]), t[n], halign=:center, valign=:middle)
-        end
-    end
-    #end length(B[1])*cotécarré length(A)*cotécarré sortie #la taille de l'alignement
-    finish()
-end
-
 function lis_moi_fasta(entree::String)
     listkopf::Vector{String}=[]
     vecteurdessequences::Vector{String}=[]
@@ -123,17 +98,12 @@ function lis_moi_fasta(entree::String)
 end
 
 function main()
-    
-        
         args = parse_commandline()
         jobin::String=args["input"]
         jobout::String=args["output"]
         cotécarré::Int=min(args["dimentions"],20)
-        type::String=args["typegraphe"]
         vecteurdessequences::Vector{String}=lis_moi_fasta(jobin)
-        panoramatographe_nuc(vecteurdessequences,jobout,cotécarré,type)
-        #panoramatographe_2_nuc(vecteurdessequences,jobout,cotécarré,type)
-
+        panoramatographe_nuc(vecteurdessequences,jobout,cotécarré)
 end
     
 main()
