@@ -1,6 +1,6 @@
 # Multi Sequences Glimpse
 
-This is the rapide viewer used in  [PkXplore](https://github.com/jpflandrs/PkXplore).
+This is a rapid multi-sequences viewer developped initialy for [PkXplore](https://github.com/jpflandrs/PkXplore).
 
 # What is done
 
