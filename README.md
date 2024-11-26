@@ -38,6 +38,12 @@ the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/m
 
 - The letters [A,T,G,C,N] are readable only when ```alphabet_size``` is set to 20, under this value the output is fuzzy. Usually the ``alphabet_size``` value is set to 4 and the output is only composed of colored squares.
 
+## Why Luxor
+
+- Why not ? Luxor is a **great** tool in pure Julia.
+
+- I like Luxor and I am used to so that the solution was easy to write.
+
 ## License
 
 Avalaible under the CECIL license terms.
