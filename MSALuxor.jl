@@ -52,7 +52,7 @@ function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int)
     lmax=sort(map(x -> length(x),A),rev=true)[1]
         A=map(x-> x*"-"^(lmax-length(x)),A)
     B::Vector{Vector{SubString{String}}}= [split(i,"") for i in A] 
-    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "black") for i in j],B)
+    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "black","R"  => "grey","Y"  => "grey","K"  => "grey","M"  => "grey","S"  => "grey","W"  => "grey","B"  => "grey","D"  => "grey","H"  => "grey","V"  => "grey") for i in j],B)
     couleursvector::Vector{String}= [(colorisé...)...] #la liste de 1 ... n
     bases::Vector{Char}=[(A...)...] # les noms des bases de 1 ... n
     type::String = "png"
