@@ -1,6 +1,6 @@
 # Multi Sequences Glimpse
 
-This is a qwick multi-sequences viewer developped initialy for [PkXplore](https://github.com/jpflandrs/PkXplore). The aim is to get a glimpse to an alignment of sequences to detect visually its global quality like [here](https://github.com/jpflandrs/PkXplore/blob/main/PkXplorer.pdf).
+This is a qwick multi-sequences viewer developped initialy for [PkXplore](https://pkxplore.univ-lyon1.fr/nucworkshop), [its GitHub](https://github.com/jpflandrs/PkXplore). The aim is to get a glimpse to an alignment of sequences to detect visually its global quality like [here](https://github.com/jpflandrs/PkXplore/blob/main/PkXplorer.pdf).
 
 # What is done
 
