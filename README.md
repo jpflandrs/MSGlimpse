@@ -8,18 +8,15 @@ A Fasta file ``inputfile`` corresponding to the set of sequences is transformed 
 When the ``alphabet_size`` is big enougth (>=10) the letter is also shown (larger is better). Take care that if the sequences are long the letter cannot be read without zooming.
 The ``outputfile`` is a png file.
 
-- It is currently *limited to nucleic files*.
-
-This is the final picture from an alignment: ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/aligned_crude.png)
-Where the colors are as follow:
-![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/Chars.png)
+This is the final picture from a nucleic alignment: ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/aligned_crude.png)
 Black is representing gaps.
+Her a [protein alignment](https://github.com/jpflandrs/MSGlimpse/blob/main/proteinview.png)
 
 # Usage
 
 - Run ```julia MSAluxor -i inputfile -o outputfile -d alphabet_size -c color_scheme``` take care that the ```.png``` suffix is automatically added.
 - ```color_scheme``` is currently:
-- 1) Nucleic sequences : nuc1 (A/T/G/C/N), nuc2 (R/Y).
+- 1) Nucleic sequences : nuc1 (A/T/G/C/N) ![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/Chars.png), nuc2 (R/Y).
 - 2) Protein sequences : prot1 (KR,AFILMVW,NQST,HY,C,DE,P,G) ![prot1](https://github.com/jpflandrs/MSGlimpse/blob/main/demoprot.png).
 - ``` alphabet_size ``` is an integer.
 
