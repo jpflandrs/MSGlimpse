@@ -28,14 +28,7 @@ function parse_commandline()
     s = ArgParseSettings()
 
     @add_arg_table! s begin
-    "--input", "-t"
-        help = "type of sequences" #nuc/prot 
-        arg_type = String
-        required = true
-    "--input", "-c"
-        help = "colorscheme" #numero donc -t prot -c 1 donnera le type 1 des couleurs de la sortie
-        arg_type = String
-        required = true
+
     "--input", "-i"
         help = "fasta entree"
         arg_type = String
@@ -53,26 +46,13 @@ function parse_commandline()
     
 end
 
-function ripolin(B::Vector{String}, formula::String) #on envoie la sequence et le nom du catalogue de peinture
-    #https://juliagraphics.github.io/Luxor.jl/dev/howto/colors-styles/
-    #O pyrrolysine
-    #U selenocysteine
-    if formula == "nuc1"
-        return map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "black","R"  => "grey","Y"  => "grey","K"  => "grey","M"  => "grey","S"  => "grey","W"  => "grey","B"  => "grey","D"  => "grey","H"  => "grey","V"  => "grey") for i in j],B)
-    elseif formula == "nuc2" #AT vs GC 
-            return map((j) -> [replace(i,"A" => "oranged", "T" => "oranged","C" => "palegreen4","G" => "palegreen4","N" => "grey","-" => "black","R"  => "grey","Y"  => "grey","K"  => "grey","M"  => "grey","S"  => "grey","W"  => "grey","B"  => "grey","D"  => "grey","H"  => "grey","V"  => "grey") for i in j],B)
-    elseif formula == "prot1" #listes des AA comme seaview par defaut, couleurs un peu modifiées
-        return map((j) -> [replace(i,"K"  => "red", "R" => "red", "A"  => "royalblue3","F" => "royalblue3","I" => "royalblue3","L" => "royalblue3","M" => "royalblue3","V" => "royalblue3","W" => "royalblue3","N"  => "green2","Q" => "green2","S" => "green2","T" => "green2","H"  => "cyan","Y" =>"cyan","C"  => "lightsalmon","D"  => "deeppink1","E" => "deeppink1","P"  => "yellow","G"  => "orange","X"  => "darkgrey","O"  => "brown","U"  => "darkred" ) for i in j],B)
 
-    end
-end
-
-function panoramatographe(A::Vector{String},sortie::String,cotécarré::Int) #là on peut envoyer une matrice fasta donc on peut traiter les blasts de sortie
+function panoramatographe_nuc(A::Vector{String},sortie::String,cotécarré::Int) #là on peut envoyer une matrice fasta donc on peut traiter les blasts de sortie
     # a partir de A on fabrique une liste de colorisation et une liste de nom de bases
     lmax=sort(map(x -> length(x),A),rev=true)[1]
         A=map(x-> x*"-"^(lmax-length(x)),A)
     B::Vector{Vector{SubString{String}}}= [split(i,"") for i in A] 
-    colorisé::Vector{Vector{String}}= ripolin(A,"prot1")
+    colorisé::Vector{Vector{String}}=map((j) -> [replace(i,"A" => "red", "T" => "blue","C" => "green","G" => "yellow","N" => "grey","-" => "black","R"  => "grey","Y"  => "grey","K"  => "grey","M"  => "grey","S"  => "grey","W"  => "grey","B"  => "grey","D"  => "grey","H"  => "grey","V"  => "grey") for i in j],B)
     couleursvector::Vector{String}= [(colorisé...)...] #la liste de 1 ... n
     bases::Vector{Char}=[(A...)...] # les noms des bases de 1 ... n
     type::String = "png"
@@ -119,13 +99,11 @@ end
 
 function main()
         args = parse_commandline()
-        typede::String=args["-t"]
-        couleurs::String=args["-c"]
         jobin::String=args["input"]
         jobout::String=args["output"]
         cotécarré::Int=min(args["dimentions"],20)
         vecteurdessequences::Vector{String}=lis_moi_fasta(jobin)
-        panoramatographe(vecteurdessequences,jobout,cotécarré)
+        panoramatographe_nuc(vecteurdessequences,jobout,cotécarré)
 end
     
 main()

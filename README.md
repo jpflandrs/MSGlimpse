@@ -5,20 +5,26 @@ This is a qwick multi-sequences viewer developped initialy for [PkXplore](https:
 # What is done
 
 A Fasta file ``inputfile`` corresponding to the set of sequences is transformed to a picture where the value of each base is rendered by a colored square.
-When the ``alphabet_size`` is big enougth (>=10) the letter is also shown. Take care that if the sequences are long the letter cannot be read
+When the ``alphabet_size`` is big enougth (>=10) the letter is also shown (larger is better). Take care that if the sequences are long the letter cannot be read without zooming.
 The ``outputfile`` is a png file.
+
 - It is currently *limited to nucleic files*.
 
-This is the final picture from an alignment: ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/aligned_crude.png) 
+This is the final picture from an alignment: ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/aligned_crude.png)
 Where the colors are as follow:
 ![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/Chars.png)
 Black is representing gaps.
+
 # Usage
 
-- Run ```julia MSAluxor(inputfile,outputfile,alphabet_size)``` take care that the ```.png``` suffix is automatically added.
+- Run ```julia MSAluxor -i inputfile -o outputfile -d alphabet_size -c color_scheme``` take care that the ```.png``` suffix is automatically added.
+- ```color_scheme``` is currently:
+- 1) Nucleic sequences : nuc1 (A/T/G/C/N), nuc2 (R/Y).
+- 2) Protein sequences : prot1 (KR,AFILMVW,NQST,HY,C,DE,P,G) ![prot1](https://github.com/jpflandrs/MSGlimpse/blob/main/demoprot.png).
+- ``` alphabet_size ``` is an integer.
 
-- Using the minitest.fasta file 
-```julia MSALuxor.jl -i minitest.fasta -o minitest -d 20```
+- Using the minitest.fasta file
+```julia MSALuxor.jl -i minitest.fasta -o minitest -d 20 -c nuc1```
 the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/main/minitest.png)
 
 - Note that in  [PkXplore](https://github.com/jpflandrs/PkXplore) a Vector of sequences is send directly to the function ```panoramatographe_nuc``` like here:
@@ -32,7 +38,7 @@ the output is: ![minitest picture](https://github.com/jpflandrs/MSGlimpse/blob/m
 
 ## Limitations
 
-- Currently limited to nucleic sequences.
+- Currently limited color_schemes
 
 - The length of the sequences is not limited and the pictures are not very informative if the sequences (or one of the sequences) is very long! Do not try with a 150,000 bp alignment!. In PkXplore The maximal length is 3500 bp by construction (web-page rendering). It works for bigger sequences but even using ```alphabet_size=1``` the picture may be difficult to read!
 
