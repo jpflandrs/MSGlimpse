@@ -10,14 +10,14 @@ The ``outputfile`` is a png file.
 
 This is the final picture from a nucleic alignment: ![final picture](https://github.com/jpflandrs/MSGlimpse/blob/main/aligned_crude.png)
 Black is representing gaps.
-Her a [protein alignment](https://github.com/jpflandrs/MSGlimpse/blob/main/proteinview.png)
+Here a [protein alignment](https://github.com/jpflandrs/MSGlimpse/blob/main/proteinview.png)
 
 # Usage
 
 - Run ```julia MSAluxor -i inputfile -o outputfile -d alphabet_size -c color_scheme``` take care that the ```.png``` suffix is automatically added.
 - ```color_scheme``` is currently:
-- 1) Nucleic sequences : nuc1 (A/T/G/C/N) ![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/Chars.png), nuc2 (R/Y).
-- 2) Protein sequences : prot1 (KR,AFILMVW,NQST,HY,C,DE,P,G) ![prot1](https://github.com/jpflandrs/MSGlimpse/blob/main/demoprot.png).
+- 1) Nucleic sequences : nuc1 (A/T/G/C/N) ![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/CharsNuc.png), nuc2 (R/Y).
+- 2) Protein sequences : prot1 (KR,AFILMVW,NQST,HY,C,DE,P,G,O,U) ![prot1](https://github.com/jpflandrs/MSGlimpse/blob/main/CharsProt.png).
 - ``` alphabet_size ``` is an integer.
 
 - Using the minitest.fasta file
