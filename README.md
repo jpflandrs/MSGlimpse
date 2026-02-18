@@ -14,7 +14,7 @@ Here a [protein alignment](https://github.com/jpflandrs/MSGlimpse/blob/main/prot
 
 # Usage
 
-- Run ```julia MSAluxor -i inputfile -o outputfile -d alphabet_size -c color_scheme``` take care that the ```.png``` suffix is automatically added.
+- Run ```julia MSAluxor.jl -i inputfile -o outputfile -d alphabet_size -c color_scheme``` take care that the ```.png``` suffix is automatically added.
 - ```color_scheme``` is currently:
 - 1) Nucleic sequences : nuc1 (A/T/G/C/N) ![Colors](https://github.com/jpflandrs/MSGlimpse/blob/main/CharsNuc.png), nuc2 (R/Y).
 - 2) Protein sequences : prot1 (KR,AFILMVW,NQST,HY,C,DE,P,G,O,U) ![prot1](https://github.com/jpflandrs/MSGlimpse/blob/main/CharsProt.png).
