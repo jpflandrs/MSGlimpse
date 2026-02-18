@@ -141,7 +141,7 @@ function lis_moi_fasta(entree::String)
         localtete::String = ""
         while  !eof(f) #on utilise la voie rapide de lecture ligne à ligne 
             for l in eachline(f)
-                l=strip(l,['*']) #cas des protéines avec en fin ce CDS codon STOP
+                l=replace(l,'*' => "") #cas des protéines avec en fin ce CDS codon STOP
                 if startswith(l,'>') #on débute un fasta mais...
                     if ! isempty(localfasta) #on vient de lire un fasta entier  donc localfasta est plein et on garde
                         push!(listkopf,localtete) #les noms dans l'ordre de l'alignement
